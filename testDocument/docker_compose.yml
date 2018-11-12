@@ -9,9 +9,8 @@ services:
       - ./jenkins:/var/jenkins_home
   jenkins_slave:
     image: "registry.jala.info/devops/jenkins/jnlp-slave:3.27.1-alphine"
-    env_file:
-      - -url
-      - http://jenkins_server:5000
-      - -wordDir=/home/jenkins/agent
-      - <secret>
-      - <agent name>
+    args:
+      - JENKINS-URL=http://jenkins-server:50000
+      - JENKINS_SECRET
+      - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+      - JENKINS_AGENT_NAME=jenkins_slave
